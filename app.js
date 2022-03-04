@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 var path = __dirname + '/views/';
-
+console.log("__dirname= " + __dirname);
 var customers = [];
 
 router.use(function (req,res,next) {
@@ -25,9 +25,9 @@ app.post("/api/customers/save", function(req,res){
 	var customer = {};
 	customer.firstname = req.body.firstname;
 	customer.lastname = req.body.lastname;
-	
+
 	customers.push(customer);
-	
+
 	return res.send(customer);
 });
 
@@ -40,6 +40,7 @@ app.use("/",router);
 
 app.use("*",function(req,res){
   res.sendFile(path + "404.html");
+	console.log("path= " + path);
 });
 
 app.listen(8081, function () {
